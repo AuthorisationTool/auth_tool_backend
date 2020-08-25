@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy>
+  <Role roleID="5812bdb6-2409-46c9-bc7f-0230570171cc" roleName="ismael">
+    <Metadata classification="type" type="web_application" />
+    <levels />
+  </Role>
+  <Role roleID="c8a85d72-7ed2-4e5c-a361-c2968e862a3b" roleName="Chemseddine">
+    <Metadata classification="type" type="web_application" />
+    <levels>
+      <level id="1" model="ProfileBasedAccessControl">constraint_list</level>
+      <level id="2" model="ContextBasedAccessControl">constraint_list</level>
+    </levels>
+  </Role>
+</Policy>
