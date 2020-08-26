@@ -50,6 +50,16 @@ public class AccessRequestService {
         return decision;
     }
 
+    public Decision readProfileEvaluationDecision(AccessRequest accessRequest){
+        Decision decision = null;
+        return decision;
+    }
+
+    public Decision readContextEvaluationDecision(AccessRequest accessRequest){
+        Decision decision = null;
+        return decision;
+    }
+
 
 
 
