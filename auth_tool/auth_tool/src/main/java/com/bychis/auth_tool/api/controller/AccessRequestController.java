@@ -44,7 +44,7 @@ public class AccessRequestController {
     public Decision profileEvaluationRequest(@RequestBody String requestID,
                                              @RequestBody List<Value> valueList) {
         AccessRequest accessRequest = new AccessRequest(requestID,valueList);
-        Decision decision = null;
+        Decision decision = accessRequestService.readProfileEvaluationDecision(accessRequest);
         return decision;
     }
 
@@ -52,7 +52,7 @@ public class AccessRequestController {
     public Decision EnvironmentEvaluationRequest(@RequestBody String requestID,
                                                  @RequestBody List<Value> valueList) {
         AccessRequest accessRequest = new AccessRequest(requestID,valueList);
-        Decision decision = null;
+        Decision decision = accessRequestService.readContextEvaluationDecision(accessRequest);
         return decision;
     }
 }
