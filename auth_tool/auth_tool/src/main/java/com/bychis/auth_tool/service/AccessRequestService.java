@@ -51,17 +51,22 @@ public class AccessRequestService {
     }
 
     public Decision readProfileEvaluationDecision(AccessRequest accessRequest){
-        Decision decision = null;
+        accessRequest.setEvaluation(false);
+        Decision decision = RuleEngineFactory.ruleEngine.rule(accessRequest);
+        if(decision.getRequestState().equals(RequestState.ON_EVALUATION)){
+            decision.setDemanded_values(constraintService
+                    .getTypeOfConstraintToDemand(decision.getRoleID(),2));
+        }
         return decision;
     }
 
     public Decision readContextEvaluationDecision(AccessRequest accessRequest){
-        Decision decision = null;
+        accessRequest.setEvaluation(false);
+        Decision decision = RuleEngineFactory.ruleEngine.rule(accessRequest);
+        if(decision.getRequestState().equals(RequestState.ON_EVALUATION)){
+            // giving access to remote IP address
+        }
         return decision;
     }
-
-
-
-
-
+    
 }

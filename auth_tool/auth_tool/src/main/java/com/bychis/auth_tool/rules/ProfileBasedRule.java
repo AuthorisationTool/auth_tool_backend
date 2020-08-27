@@ -11,9 +11,6 @@ public class ProfileBasedRule implements RuleI<AccessRequest,Decision> {
     private final String roleID;
     private final List<ProfileConstraintType> constraints;
 
-    @Autowired
-    private ConstraintService constraintService;
-
     public ProfileBasedRule(String roleID, List<ProfileConstraintType> constraints) {
         this.roleID = roleID;
         this.constraints = constraints;
@@ -47,8 +44,6 @@ public class ProfileBasedRule implements RuleI<AccessRequest,Decision> {
         if(input.isEvaluation()){
             decision = DecisionRepo.getDecisionByID(input.getRequestID());
             decision.setTypeOfRequestToDemand("environment_evaluation");
-            decision.setDemanded_values(constraintService
-                    .getTypeOfConstraintToDemand(decision.getRoleID(),2));
             DecisionRepo.updateDecision(input.getRequestID(),decision);
 
         }else{
