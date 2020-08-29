@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy>
+  <Role roleID="e9810e35-657b-4c59-9011-afc958211c16" roleName="initial_role">
+    <Metadata classification="type" type="web_application" />
+    <levels>
+      <level id="1" model="ProfileBasedAccessControl">
+        <constraints />
+      </level>
+      <level id="2" model="ContextBasedAccessControl">
+        <constraints />
+      </level>
+    </levels>
+  </Role>
+</Policy>
