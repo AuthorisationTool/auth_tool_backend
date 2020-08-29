@@ -78,5 +78,9 @@ public class ConstraintService {
         return typeconstraints;
     }
 
+    public int getConstraintNumber(String roleID, int levelID){
+        return getTypeOfConstraintToDemand(roleID,levelID).size();
+    }
+
 
 }

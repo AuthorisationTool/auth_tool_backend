@@ -20,13 +20,13 @@ public class AccessRequestController {
         this.accessRequestService = accessRequestService;
     }
 
-    @GetMapping(path = "/badge_evaluation")
+    @RequestMapping( value = "/badge_evaluation", method = RequestMethod.GET )
     public Decision badgeEvaluationRequest(@RequestBody BadgeEvaluationRequestHolder
                                                        request,
                                            HttpServletRequest servletRequest) {
         AccessRequest accessRequest = new AccessRequest("badge_evaluation",
                 request.getBid());
-        accessRequest.setIp(servletRequest.getRemoteHost());
+        accessRequest.setIp(servletRequest.getRemoteAddr());
         return accessRequestService.readBadgeEvaluationDecision(accessRequest);
     }
 
@@ -36,7 +36,6 @@ public class AccessRequestController {
         AccessRequest accessRequest = new AccessRequest("role_evaluation",
                 request.getRequestID(),
                 request.getUserID());
-
         return accessRequestService.readRoleEvaluationDecision(accessRequest);
     }
 

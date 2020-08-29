@@ -18,12 +18,13 @@ public class BadgeBasedRule implements RuleI<AccessRequest,Decision> {
     @Override
     public Decision process(AccessRequest input) {
         Decision decision = null;
-        if(input.isEvaluation()){
+        if (input.isEvaluation()){
         decision = new Decision(input.getUser(),
                 RequestState.PRE_EVALUATION);
+        decision.setIp_address(input.getIp());
         decision.setTypeOfRequestToDemand("role_evaluation");
         DecisionRepo.addDecision(decision);
-        }else {
+        } else {
             decision = new Decision(RequestState.REJECTED,
                     "ACCESS DENIED BY LEVEL MODEL: Badge Based Access Control ... " +
                             "You may contact your administrator for more information");

@@ -53,6 +53,11 @@ public class ConstraintController {
 
         this.constraintService.updateConstraint(roleID,levelID,constraintID,constraintRequestHolder);
     }
+    @GetMapping
+    public int getConstraintNumber(@PathVariable String roleID,
+                                   @PathVariable int levelID){
+        return constraintService.getConstraintNumber(roleID,levelID);
+    }
 
 
 }
