@@ -40,6 +40,7 @@ public class LevelController {
 
     @GetMapping
     public List<Level> getLevelsAll(@PathVariable String roleID){
+
         return this.levelService.getLevelsAll(roleID);
     }
 

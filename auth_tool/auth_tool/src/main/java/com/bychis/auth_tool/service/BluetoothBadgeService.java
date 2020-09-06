@@ -26,6 +26,10 @@ public class BluetoothBadgeService {
         bluetoothBadgeRepo.deleteById(id);
     }
 
+    public void deleteAllBadges(){
+        bluetoothBadgeRepo.deleteAll();
+    }
+
     public List<BluetoothBadge> getAllBluetoothBadges()
     { return this.bluetoothBadgeRepo.findAll(); }
 

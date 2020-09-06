@@ -30,7 +30,7 @@ public class ConstraintDaoImpl implements ConstraintDao {
                 for(Element level : levelListE.getChildren("level")){
                     if(level.getAttributeValue("id").equals(String.valueOf(levelID))){
                         Element constraintListE = level.getChild("constraints");
-                        Element constraintE = new Element(constraint.getConstraintTypeName());
+                        Element constraintE = new Element(constraint.getConstraintTypeSpecificName());
 
                         constraintE.setAttribute("id",String.valueOf(constraint.getConstraintID()));
                         constraintE.setAttribute("type",constraint.getConstraintTypeSpecificName());
@@ -117,11 +117,12 @@ public class ConstraintDaoImpl implements ConstraintDao {
                                 break;
                         }
                         Element constraintListE = levelE.getChild("constraints");
-                        for (Element constraintE : constraintListE.getChildren(type_of_constraints)) {
+                        for (Element constraintE : constraintListE.getChildren()) {
                             switch (type_of_constraints) {
                                 case "EnvironmentConstraint":
                                     EnvironmentConstraint ec = null;
                                     if (webapp) {
+                                        System.out.println(" constraint list ");
                                         ec = new EnvironmentConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
                                                 constraintE.getChild("permission").getAttributeValue("value"),
                                                 constraintE.getAttributeValue("type"),
@@ -155,7 +156,7 @@ public class ConstraintDaoImpl implements ConstraintDao {
                                                 Boolean.getBoolean(actionE.getAttributeValue("delete")));
                                         pc = new ProfileConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
                                                 action,
-                                                constraintE.getAttributeValue("type"),
+                                                constraintE.getName(),
                                                 constraintE.getChild("arg").getText());
                                     } break;
                             }
@@ -264,5 +265,4 @@ public class ConstraintDaoImpl implements ConstraintDao {
         }
         return constraintList;
     }
-    // mazal
 }

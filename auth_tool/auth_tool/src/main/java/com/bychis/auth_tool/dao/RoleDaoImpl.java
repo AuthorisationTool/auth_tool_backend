@@ -78,9 +78,6 @@ public class RoleDaoImpl implements RoleDao{
 
     }
 
-
-
-
     @Override
     public Role getRole(String id) {
         Document doc = dbXML.useSAXBuilder();

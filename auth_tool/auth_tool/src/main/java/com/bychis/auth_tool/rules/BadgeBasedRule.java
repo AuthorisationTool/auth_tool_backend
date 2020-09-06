@@ -11,8 +11,7 @@ public class BadgeBasedRule implements RuleI<AccessRequest,Decision> {
             if(!input.getUser().equals("non_assigned")){
                 input.setEvaluation(true);
             }
-        }
-        return val;
+        } return val;
     }
 
     @Override
@@ -28,7 +27,6 @@ public class BadgeBasedRule implements RuleI<AccessRequest,Decision> {
             decision = new Decision(RequestState.REJECTED,
                     "ACCESS DENIED BY LEVEL MODEL: Badge Based Access Control ... " +
                             "You may contact your administrator for more information");
-        }
-        return decision;
+        } return decision;
     }
 }

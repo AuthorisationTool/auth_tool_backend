@@ -18,6 +18,7 @@ public class TimeOfRequest implements EnvironmentConstraintType{
     }
 
     public TimeOfRequest(){}
+
     @Override
     public String getEnvironmentConstraintTypeName() {
         return this.getClass().getSimpleName();

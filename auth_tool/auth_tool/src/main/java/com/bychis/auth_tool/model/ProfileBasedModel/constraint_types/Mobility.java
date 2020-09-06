@@ -1,6 +1,7 @@
 package com.bychis.auth_tool.model.ProfileBasedModel.constraint_types;
 
 public class Mobility implements ProfileConstraintType{
+
     private String mobility;
 
     public Mobility(){}

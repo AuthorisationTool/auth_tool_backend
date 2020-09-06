@@ -82,7 +82,8 @@ public class ProfileConstraint implements Constraint {
 
     @Override
     public String getConstraintTypeSpecificName() {
-        return profileConstraintType.getClass().getSimpleName();
+
+        return this.profileConstraintType.getClass().getSimpleName();
     }
 
     @Override

@@ -7,7 +7,6 @@ public class RoleBasedRule implements RuleI<AccessRequest,Decision> {
 
     private String roleID;
 
-
     public RoleBasedRule(String roleID) {
         this.roleID = roleID;
     }
@@ -17,11 +16,8 @@ public class RoleBasedRule implements RuleI<AccessRequest,Decision> {
         boolean val = false;
         if(input.getTypeOfRequest().equals("role_evaluation")) {
             val = true;
-            if(input.getRoleID().equals(this.roleID)){
-                input.setEvaluation(true);
-            }
-        }
-        return val;
+            if(input.getRoleID().equals(this.roleID)){ input.setEvaluation(true); }
+        } return val;
     }
 
     @Override
@@ -37,7 +33,6 @@ public class RoleBasedRule implements RuleI<AccessRequest,Decision> {
             decision = new Decision(RequestState.REJECTED,
                     "ACCESS DENIED BY LEVEL MODEL: Role Based Access Control ..." +
                             "You may contact your administrator for more info");
-        }
-        return decision;
+        } return decision;
     }
 }

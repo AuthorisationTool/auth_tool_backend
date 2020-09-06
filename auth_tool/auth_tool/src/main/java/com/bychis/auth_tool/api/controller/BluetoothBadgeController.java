@@ -30,7 +30,13 @@ public class BluetoothBadgeController {
 
     @DeleteMapping(path = "/{id}")
     public void deleteBluetoothBadge(@PathVariable Long id){
+
         this.bluetoothBadgeService.deleteBadgeBluetooth(id);
+    }
+
+    @DeleteMapping
+    public void deleteAllBadge(){
+        this.bluetoothBadgeService.deleteAllBadges();
     }
 
     @PutMapping(path = "/{id}")
