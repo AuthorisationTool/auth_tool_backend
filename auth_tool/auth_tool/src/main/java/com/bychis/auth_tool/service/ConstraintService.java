@@ -44,11 +44,11 @@ public class ConstraintService {
     }
 
     public List<Constraint> getConstraintsAll(String roleID, int levelID){
-        return this.constraintDao.getConstraintsAll(roleID,levelID);
+        return ConstraintDaoImpl.getConstraintsAll(roleID,levelID);
     }
 
     public static List<ProfileConstraintType> getProfileConstraints(String roleID, int levelID){
-        List<Constraint> constraints = ConstraintDaoImpl.getConstraints(roleID, levelID);
+        List<Constraint> constraints = ConstraintDaoImpl.getConstraintsAll(roleID,levelID);
         List<ProfileConstraintType> profileConstraintTypes =
                 new ArrayList<>();
         for(Constraint constraint: constraints){
@@ -59,7 +59,7 @@ public class ConstraintService {
     }
 
     public static List<EnvironmentConstraintType> getEnvironmentConstraints(String roleID, int levelID){
-        List<Constraint> constraints = ConstraintDaoImpl.getConstraints(roleID,levelID);
+        List<Constraint> constraints = ConstraintDaoImpl.getConstraintsAll(roleID,levelID);
         List<EnvironmentConstraintType> environmentConstraintTypes =
                 new ArrayList<>();
         for(Constraint constraint: constraints){

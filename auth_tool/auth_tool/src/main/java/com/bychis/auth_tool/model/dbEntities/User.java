@@ -1,21 +1,13 @@
 package com.bychis.auth_tool.model.dbEntities;
-
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "userID", updatable = true, nullable = false)
-    private UUID userID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userID;
 
     @Column(name = "name")
     private String name;
@@ -61,11 +53,11 @@ public class User {
         this.name = name;
     }
 
-    public UUID getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(UUID userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 

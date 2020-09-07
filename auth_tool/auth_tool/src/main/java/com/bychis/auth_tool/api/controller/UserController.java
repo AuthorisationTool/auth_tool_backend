@@ -25,12 +25,12 @@ public class UserController {
     }
 
     @DeleteMapping("/{userID}")
-    public void deleteUser(@PathVariable String userID){
+    public void deleteUser(@PathVariable Long userID){
         this.userService.deleteUser(userID);
     }
 
     @GetMapping("/{userID}")
-    public Optional<User> getUserByID(@PathVariable String userID){
+    public Optional<User> getUserByID(@PathVariable Long userID){
         return this.userService.getUserByID(userID);
     }
 
@@ -40,12 +40,12 @@ public class UserController {
     }
 
     @PutMapping("/{userID}/role")
-    public void updateUserRoleList(@PathVariable String userID,@RequestBody String roleID){
+    public void updateUserRoleList(@PathVariable Long userID,@RequestBody String roleID){
         this.userService.updateUserRoles(userID,roleID);
     }
 
     @GetMapping("/{userID}/roles")
-    public String getUserRole(@PathVariable String userID){
+    public String getUserRole(@PathVariable Long userID){
         return this.userService.getUserRoles(userID);
     }
 }

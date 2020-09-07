@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 @Repository("User")
-public interface UserRepo extends JpaRepository<User, UUID> {
+public interface UserRepo extends JpaRepository<User, Long> {
     default User getUserByStringId(String id){
         List<User> users = this.findAll();
         User user = new User();

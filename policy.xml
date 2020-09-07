@@ -5,39 +5,18 @@
     <levels>
       <level id="1" model="ProfileBasedAccessControl">
         <constraints>
-          <Mobility id="1" type="Mobility">
-            <arg>Home</arg>
+          <ProfileConstraint id="1" type="Mobility">
+            <arg>home</arg>
             <permission value="allow" />
-          </Mobility>
-          <Confidence id="2" type="Confidence">
-            <arg>50 75</arg>
-            <permission value="allow" />
-          </Confidence>
-          <Confidence id="1" type="Confidence">
-            <arg>23 47</arg>
-            <permission value="allow" />
-          </Confidence>
-          <Confidence id="1" type="Confidence">
-            <arg>23 47</arg>
+          </ProfileConstraint>
+          <ProfileConstraint id="1" type="Confidence">
+            <arg>33 47</arg>
             <permission value="deny" />
-          </Confidence>
-          <Confidence id="1" type="Confidence">
-            <arg>0 100</arg>
-            <permission value="allow" />
-          </Confidence>
+          </ProfileConstraint>
         </constraints>
       </level>
       <level id="2" model="ContextBasedAccessControl">
-        <constraints>
-          <Acceleration id="1" type="Acceleration">
-            <arg>1 3 1 3 1 3</arg>
-            <permission value="allow" />
-          </Acceleration>
-          <Acceleration id="2" type="Acceleration">
-            <arg>1 3 1 3 1 3</arg>
-            <permission value="allow" />
-          </Acceleration>
-        </constraints>
+        <constraints />
       </level>
     </levels>
   </Role>

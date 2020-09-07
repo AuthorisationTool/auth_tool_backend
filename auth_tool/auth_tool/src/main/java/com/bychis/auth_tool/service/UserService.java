@@ -23,25 +23,25 @@ public class UserService {
         this.userRepo.save(user);
     }
 
-    public void deleteUser(String userID){
-        this.userRepo.deleteById(UUID.fromString(userID));
+    public void deleteUser(Long userID){
+        this.userRepo.deleteById(userID);
     }
 
     public List<User> getUsersAll(){
         return this.userRepo.findAll();
     }
 
-    public Optional<User> getUserByID(String userID){
-        return this.userRepo.findById(UUID.fromString(userID));
+    public Optional<User> getUserByID(Long userID){
+        return this.userRepo.findById(userID);
     }
 
-    public void updateUserRoles(String userID, String roleID){
-        User user = this.userRepo.getOne(UUID.fromString(userID));
+    public void updateUserRoles(Long userID, String roleID){
+        User user = this.userRepo.getOne(userID);
         user.setMemberOf(roleID);
         this.userRepo.save(user);
     }
 
-    public String getUserRoles(String userID){
-        return this.getUserByID(userID).get().getMemberOf();
+    public String getUserRoles(Long userID){
+        return this.userRepo.getOne(userID).getMemberOf();
     }
 }

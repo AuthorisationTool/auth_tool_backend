@@ -30,7 +30,7 @@ public class ConstraintDaoImpl implements ConstraintDao {
                 for(Element level : levelListE.getChildren("level")){
                     if(level.getAttributeValue("id").equals(String.valueOf(levelID))){
                         Element constraintListE = level.getChild("constraints");
-                        Element constraintE = new Element(constraint.getConstraintTypeSpecificName());
+                        Element constraintE = new Element(constraint.getConstraintTypeName());
 
                         constraintE.setAttribute("id",String.valueOf(constraint.getConstraintID()));
                         constraintE.setAttribute("type",constraint.getConstraintTypeSpecificName());
@@ -90,8 +90,8 @@ public class ConstraintDaoImpl implements ConstraintDao {
 
     }
 
-    @Override
-    public List<Constraint> getConstraintsAll(String roleID, int levelID) {
+
+    public static List<Constraint> getConstraintsAll(String roleID, int levelID) {
         boolean webapp = false;
         Document doc = dbXML.useSAXBuilder();
         Element rootE = doc.getRootElement();
@@ -188,81 +188,4 @@ public class ConstraintDaoImpl implements ConstraintDao {
 
     }
 
-    public static List<Constraint> getConstraints(String roleID, int levelID){
-        boolean webapp = false;
-        Document doc = dbXML.useSAXBuilder();
-        Element rootE = doc.getRootElement();
-        List<Constraint> constraintList = new ArrayList<>();
-        String type_of_constraints = null;
-
-        loop:
-        for (Element roleE : rootE.getChildren("Role")) {
-            Element metadataE = roleE.getChild("Metadata");
-            if (metadataE.getAttributeValue("classification").equals("type")) {
-                webapp = metadataE.getAttributeValue("type").equals("web_application");
-            }
-            if (roleE.getAttributeValue("roleID").equals(roleID)) {
-                Element levelListE = roleE.getChild("levels");
-                for (Element levelE : levelListE.getChildren("level")) {
-                    if (levelE.getAttributeValue("id").equals(String.valueOf(levelID))) {
-                        switch (levelE.getAttributeValue("model")) {
-                            case "ContextBasedAccessControl":
-                                type_of_constraints = "EnvironmentConstraint";
-                                break;
-                            case "ProfileBasedAccessControl":
-                                type_of_constraints = "ProfileConstraint";
-                                break;
-                        }
-                        Element constraintListE = levelE.getChild("constraints");
-                        for (Element constraintE : constraintListE.getChildren(type_of_constraints)) {
-                            switch (type_of_constraints) {
-                                case "EnvironmentConstraint":
-                                    EnvironmentConstraint ec = null;
-                                    if (webapp) {
-                                        ec = new EnvironmentConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
-                                                constraintE.getChild("permission").getAttributeValue("value"),
-                                                constraintE.getAttributeValue("type"),
-                                                constraintE.getChild("arg").getText());
-                                        constraintList.add(ec);
-                                    } else {
-                                        Element actionE = constraintE.getChild("action");
-                                        Action action = new Action(Boolean.getBoolean(actionE.getAttributeValue("read")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("write")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("copy")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("delete")));
-                                        ec = new EnvironmentConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
-                                                action,
-                                                constraintE.getAttributeValue("type"),
-                                                constraintE.getText());
-                                        constraintList.add(ec);
-                                    } break;
-                                case "ProfileConstraint":
-                                    ProfileConstraint pc = null;
-                                    if (webapp) {
-                                        pc = new ProfileConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
-                                                constraintE.getChild("permission").getAttributeValue("value"),
-                                                constraintE.getAttributeValue("type"),
-                                                constraintE.getChild("arg").getText());
-                                        constraintList.add(pc);
-                                    }else{
-                                        Element actionE = constraintE.getChild("action");
-                                        Action action = new Action(Boolean.getBoolean(actionE.getAttributeValue("read")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("write")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("copy")),
-                                                Boolean.getBoolean(actionE.getAttributeValue("delete")));
-                                        pc = new ProfileConstraint(Integer.parseInt(constraintE.getAttributeValue("id")),
-                                                action,
-                                                constraintE.getAttributeValue("type"),
-                                                constraintE.getChild("arg").getText());
-                                    } break;
-                            }
-                        }
-                        break loop;
-                    }
-                }
-            }
-
-        }
-        return constraintList;
-    }
 }

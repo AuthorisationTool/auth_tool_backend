@@ -72,9 +72,9 @@ public class ConstraintRequestHolder {
                 case "allow":
                 case "deny":
                     constraint = new ProfileConstraint(this.getId(),
-                            this.permission_or_action,
-                            this.specific_type,
-                            this.arg);
+                            this.getPermission_or_action(),
+                            this.getSpecific_type(),
+                            this.getArg());
                     break outerSwitch;
                 default:
                     Action action = new Action(false);
@@ -102,7 +102,7 @@ public class ConstraintRequestHolder {
                         }
                         constraint = new ProfileConstraint(this.getId(),
                                 action,
-                                this.specific_type,
+                                this.getSpecific_type(),
                                 this.getArg());
                         break outerSwitch;
 

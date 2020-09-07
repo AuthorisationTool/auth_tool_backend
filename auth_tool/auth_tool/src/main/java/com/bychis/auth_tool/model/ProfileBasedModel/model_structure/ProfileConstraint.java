@@ -59,9 +59,6 @@ public class ProfileConstraint implements Constraint {
         this.profileConstraintType = profileConstraintType;
     }
 
-    public ProfileConstraintType getType() {
-        return profileConstraintType;
-    }
 
     public void setType(ProfileConstraintType type) {
         this.profileConstraintType = type;
@@ -82,7 +79,6 @@ public class ProfileConstraint implements Constraint {
 
     @Override
     public String getConstraintTypeSpecificName() {
-
         return this.profileConstraintType.getClass().getSimpleName();
     }
 
